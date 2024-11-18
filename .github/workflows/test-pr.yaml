@@ -5,28 +5,32 @@ on:
 jobs:
   detect-changes:
     runs-on: ubuntu-latest
-    outputs:
-      templates: ${{ steps.filter.outputs.changes }}
     steps:
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            color: ./**/color/**
-            hello: ./**/hello/**
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Detect changed templates
+        run: |
+          make detect-changes
+        id: detect_changes
+    outputs:
+      templates: ${{ steps.detect_changes.outputs.templates }}
 
   test:
-    needs: [detect-changes]
+    needs: detect-changes
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       matrix:
         templates: ${{ fromJSON(needs.detect-changes.outputs.templates) }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Smoke test for '${{ matrix.templates }}'
-        id: smoke_test
-        uses: ./.github/actions/smoke-test
-        with:
-          template: "${{ matrix.templates }}"
+      - name: Install dependencies
+        run: make install-dependencies
+
+      - name: Build templates
+        run: make build TEMPLATE=${{ matrix.templates }}
+
+      - name: Run tests
+        run: make test TEMPLATE=${{ matrix.templates }}
