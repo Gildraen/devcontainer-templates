@@ -1,6 +1,5 @@
-// More info: https://containers.dev/implementors/json_reference/
 {
-	"dockerFile": "Dockerfile",
+	"dockerFile": "../Dockerfile",
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
 	},
@@ -12,5 +11,4 @@
 			]
 		}
 	},
-	"postCreateCommand": "npm install -g @devcontainers/cli"
 }
