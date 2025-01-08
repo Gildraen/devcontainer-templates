@@ -1,36 +1,21 @@
-# Basic Makefile for devcontainer template development and testing
-
-# Variables
-PROJECT_NAME = devcontainer-template
+SHELL := /bin/bash
 
 # Build the project
 build:
-	bin/build.sh color
-
-# Run the project
-run:
-	# Add your run commands here
-	echo "Running $(PROJECT_NAME)..."
-
-# Stop the project
-stop:
-	# Add your stop commands here
-	echo "Stopping $(PROJECT_NAME)..."
+	bin/build.sh $(TEMPLATE)
 
 # Clean up build artifacts
 clean:
-	# Add your clean commands here
-	echo "Cleaning $(PROJECT_NAME)..."
+	echo "Cleaning $(TEMPLATE)..."
 
 # Test the project
 test:
-	bin/test.sh color
-
+	bin/test.sh $(TEMPLATE)
 
 # Default target
-all: build run test
+all: build test
 
-.PHONY: build run stop clean test all
+.PHONY: build clean test all
 
 
 include ci.mk

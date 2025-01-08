@@ -1,15 +1,15 @@
-# Variables
-CHANGED_FILES=$(shell git diff --name-only $(PREVIOUS_COMMIT) $(CURRENT_COMMIT) | grep -E '(.*/color/|.*/hello/)' | jq -R -s -c 'split("\n") | map(select(. != ""))')
+# Define the changed folders under src
+TEMPLATES = $(shell git diff --name-only $$(git merge-base HEAD origin/main) HEAD | grep '^src/' | awk -F'/' '{print $$2}' | sort -u | jq -R -s -c 'split("\n") | map(select(. != ""))')
 
-# Define targets
-.PHONY: all detect-changes install-dependencies build test
-
-all: detect-changes build test
-
+# Target to compute and send the folders to GitHub Actions output
 detect-changes:
-	@echo "Detecting changed templates..."
-	@echo "::set-output name=templates::$(CHANGED_FILES)"
+	@if [ -z "$(TEMPLATES)" ]; then \
+		echo "No templates changed."; \
+	else \
+		echo 'templates=$(TEMPLATES)' >> $(GITHUB_OUTPUT); \
+		echo 'Changed templates : $(TEMPLATES)'; \
+	fi
 
 install-dependencies:
 	@echo "Installing dependencies..."
-	sudo apt-get update && sudo apt-get install -y make jq
+	npm install -g @devcontainers/cli
