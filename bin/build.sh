@@ -50,4 +50,4 @@ export DOCKER_BUILDKIT=1
 
 echo "Building Dev Container"
 ID_LABEL="test-container=${TEMPLATE_ID}"
-devcontainer up --id-label ${ID_LABEL} --workspace-folder "${SRC_DIR}"
+devcontainer up --build-no-cache --id-label ${ID_LABEL} --workspace-folder "${SRC_DIR}"

@@ -4,7 +4,10 @@ source test-utils.sh
 
 # Template specific tests
 check "distro" lsb_release -c
-check "greeting" [ $(cat /usr/local/etc/greeting.txt | grep hey) ]
+check "npm" [ $(npm -v) ]
+check "yarn" [ $(yarn -v) ]
+check "node" [ $(node -v) ]
+check "discord.js" [ $(npm list discord.js) ]
 
 # Report result
 reportResults
