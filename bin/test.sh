@@ -2,7 +2,7 @@
 TEMPLATE_ID="$1"
 set -e
 
-SRC_DIR="/tmp/${TEMPLATE_ID}"
+SRC_DIR="tmp/${TEMPLATE_ID}"
 echo "Running Smoke Test"
 
 ID_LABEL="test-container=${TEMPLATE_ID}"

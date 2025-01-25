@@ -1,16 +1,25 @@
-// More info: https://containers.dev/implementors/json_reference/
 {
-	"dockerFile": "Dockerfile",
+	"name": "Docker-in-Docker DevContainer",
+	"image": "mcr.microsoft.com/vscode/devcontainers/base:0-ubuntu-20.04",
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {}
 	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"mads-hartmann.bash-ide-vscode",
-				"dbaeumer.vscode-eslint"
-			]
+				"dbaeumer.vscode-eslint",
+				"GitHub.copilot"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": "explicit"
+				},
+				"terminal.integrated.shell.linux": "/bin/bash"
+			}
 		}
 	},
-	"postCreateCommand": "npm install -g @devcontainers/cli"
 }
