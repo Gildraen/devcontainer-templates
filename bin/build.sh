@@ -5,7 +5,11 @@ set -e
 
 shopt -s dotglob
 
-SRC_DIR="/tmp/${TEMPLATE_ID}"
+if [ ! -d "tmp" ] ; then
+    mkdir "tmp"
+fi
+
+SRC_DIR="tmp/${TEMPLATE_ID}"
 cp -R "src/${TEMPLATE_ID}" "${SRC_DIR}"
 
 pushd "${SRC_DIR}"
@@ -50,4 +54,6 @@ export DOCKER_BUILDKIT=1
 
 echo "Building Dev Container"
 ID_LABEL="test-container=${TEMPLATE_ID}"
+## If devcontainer is up, then it will be removed and a new one will be created.
+docker rm -f $(docker container ls -f "label=${ID_LABEL}" -q) || true
 devcontainer up --build-no-cache --id-label ${ID_LABEL} --workspace-folder "${SRC_DIR}"
