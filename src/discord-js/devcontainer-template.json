@@ -1,0 +1,31 @@
+{
+    "id": "discord-js",
+    "version": "1.0.0",
+    "name": "Discord JS",
+    "description": "A template for Discord JS development",
+    "documentationURL": "https://github.com/Gildraen/devcontainer-templates/tree/main/src/discord-js",
+    "licenseURL": "https://github.com/Gildraen/devcontainer-templates/blob/main/LICENSE",
+    "options": {
+        "imageVariant": {
+            "type": "string",
+            "description": "Debian version (use bullseye on local arm64/Apple Silicon):",
+            "proposals": [
+                "bullseye",
+                "buster"
+            ],
+            "default": "bullseye"
+        },
+        "discordVersion": {
+            "type": "string",
+            "description": "Discord.js version to use",
+            "proposals": [
+                "13",
+                "14"
+            ],
+            "default": "14"
+        }
+    },
+    "platforms": [
+        "Any"
+    ]
+}
