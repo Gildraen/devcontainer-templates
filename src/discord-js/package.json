@@ -9,6 +9,6 @@
     "author": "Gildraen",
     "license": "MIT",
     "dependencies": {
-        "discord.js": "^${templateOption:discordVersion}"
+        "discord.js": "^14.17.3"
     }
 }

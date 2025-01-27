@@ -14,15 +14,6 @@
                 "buster"
             ],
             "default": "bullseye"
-        },
-        "discordVersion": {
-            "type": "string",
-            "description": "Discord.js version to use",
-            "proposals": [
-                "13",
-                "14"
-            ],
-            "default": "14"
         }
     },
     "platforms": [
