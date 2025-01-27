@@ -1,6 +1,6 @@
 {
     "id": "discord-js",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "name": "Discord JS",
     "description": "A template for Discord JS development",
     "documentationURL": "https://github.com/Gildraen/devcontainer-templates/tree/main/src/discord-js",
@@ -8,13 +8,15 @@
     "options": {
         "imageVariant": {
             "type": "string",
-            "description": "Ubuntu versions:",
+            "description": "Debian / Ubuntu version:",
             "proposals": [
-                "noble",
-                "jammmy",
-                "focal"
+                "debian-12",
+                "debian-11",
+                "ubuntu-24.04",
+                "ubuntu-22.04",
+                "ubuntu-20.04"
             ],
-            "default": "noble"
+            "default": "debian-11"
         }
     },
     "platforms": [
