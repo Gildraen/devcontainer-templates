@@ -1,6 +1,6 @@
 {
     "id": "discord-js",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "name": "Discord JS",
     "description": "A template for Discord JS development",
     "documentationURL": "https://github.com/Gildraen/devcontainer-templates/tree/main/src/discord-js",
